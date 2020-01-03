@@ -95,11 +95,11 @@ public class RocketMQAutoConfiguration {
             producer = new DefaultMQProducer(groupName, rocketMQProperties.getProducer().isEnableMsgTrace(),
                 rocketMQProperties.getProducer().getCustomizedTraceTopic());
         }
-
         producer.setNamesrvAddr(nameServer);
         if (!StringUtils.isEmpty(accessChannel)) {
             producer.setAccessChannel(AccessChannel.valueOf(accessChannel));
         }
+        producer.setNamespace("GID_");
         producer.setSendMsgTimeout(producerConfig.getSendMessageTimeout());
         producer.setRetryTimesWhenSendFailed(producerConfig.getRetryTimesWhenSendFailed());
         producer.setRetryTimesWhenSendAsyncFailed(producerConfig.getRetryTimesWhenSendAsyncFailed());
